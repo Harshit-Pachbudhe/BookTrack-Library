@@ -5,6 +5,7 @@ WORKDIR /app
 # Copy Maven wrapper & config
 COPY mvnw .
 COPY .mvn .mvn
+RUN chmod +x mvnw   # 🔥 FIX: Give execute permission
 
 # Copy pom.xml
 COPY pom.xml .
@@ -17,7 +18,6 @@ COPY src src
 
 # Build the application
 RUN ./mvnw package -DskipTests
-
 
 # ===== Run Stage =====
 FROM eclipse-temurin:17-jdk
